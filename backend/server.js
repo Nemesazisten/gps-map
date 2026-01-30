@@ -38,3 +38,18 @@ app.get('/api/coordinates/:id', async (req, res) => {
       return res.status(404).json({ error: 'Coordinate not found' });
     }
     
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Error fetching coordinate:', error);
+    res.status(500).json({ error: 'Failed to fetch coordinate' });
+  }
+});
+
+// POST new coordinate
+app.post('/api/coordinates', async (req, res) => {
+  try {
+    const { name, latitude, longitude, description } = req.body;
+    
+    // Validate input
+    if (!name || latitude === undefined || longitude === undefined) {
+      return res.status(400).json({ error: 'Name, latitude, and longitude are required' });
