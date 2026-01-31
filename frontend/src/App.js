@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MapView from './components/MapView';
-import Sidebar from './components/Sidebar';`nimport SearchBar from './components/SearchBar';
+import Sidebar from './components/Sidebar';
 import axios from 'axios';
 import './App.css';
 
