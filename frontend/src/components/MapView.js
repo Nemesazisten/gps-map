@@ -158,3 +158,63 @@ function SearchBox({ onSelectLocation }) {
         boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
         overflow: 'hidden'
       }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0 12px',
+          background: 'white'
+        }}>
+          <svg style={{ width: '20px', height: '20px', color: '#5f6368', flexShrink: 0 }} viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input 
+            type="text" 
+            placeholder="Search location"
+            value={searchQuery}
+            onChange={handleInputChange}
+            onFocus={handleFocus}
+            style={{
+              flex: 1,
+              padding: '14px 12px',
+              border: 'none',
+              outline: 'none',
+              fontSize: '16px',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              background: 'transparent'
+            }}
+          />
+          {searchQuery && (
+            <button 
+              onClick={handleClearSearch}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#5f6368',
+                cursor: 'pointer',
+                padding: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%',
+                flexShrink: 0
+              }}
+              onMouseEnter={(e) => e.target.style.background = '#f1f3f4'}
+              onMouseLeave={(e) => e.target.style.background = 'none'}
+            >
+              <svg style={{ width: '20px', height: '20px' }} viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              </svg>
+            </button>
+          )}
+        </div>
+      </div>
+      
+      {showResults && (isSearching || searchResults.length > 0) && (
+        <div style={{
+          position: 'absolute',
+          top: 'calc(100% + 4px)',
+          left: 0,
+          right: 0,
+          background: 'white',
+          borderRadius: '8px',
+          boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
