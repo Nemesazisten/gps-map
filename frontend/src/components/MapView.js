@@ -118,3 +118,43 @@ function SearchBox({ onSelectLocation }) {
   };
 
   const handleClearSearch = () => {
+    setSearchQuery('');
+    setSearchResults([]);
+    setShowResults(false);
+    setIsSearching(false);
+  };
+
+  const handleSelectResult = (result) => {
+    const lat = parseFloat(result.lat);
+    const lng = parseFloat(result.lon);
+    const displayName = result.display_name.split(',')[0];
+    const fullAddress = result.display_name;
+    
+    onSelectLocation({
+      lat,
+      lng,
+      name: displayName,
+      fullAddress: fullAddress,
+      shouldZoom: true // Add flag to trigger zoom
+    });
+    
+    setSearchQuery('');
+    setShowResults(false);
+    setSearchResults([]);
+  };
+
+  const handleFocus = () => {
+    if (searchResults.length > 0) {
+      setShowResults(true);
+    }
+  };
+
+  return (
+    <div ref={searchBoxRef} style={{ width: '380px' }}>
+      <div style={{
+        position: 'relative',
+        background: 'white',
+        borderRadius: '8px',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+        overflow: 'hidden'
+      }}>
